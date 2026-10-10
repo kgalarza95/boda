@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda - Anna & Kevin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fuentes: Alex Brush para los nombres (A mayúscula clara y elegante), Cormorant Garamond y Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'wedding-cream': '#FDFBF7',
+                        'wedding-warm-bg': '#F9F6F0',
+                        'wedding-gold-light': '#F3E5AB',
+                        'wedding-gold': '#D4AF37',
+                        'wedding-gold-dark': '#9A7B1C',
+                        'wedding-bronze': '#4A3B32',
+                        'wedding-bronze-light': '#6E5D53',
+                        'wedding-gold-gradient-from': '#E5C158',
+                        'wedding-gold-gradient-to': '#A07C1C'
+                    },
+                    fontFamily: {
+                        script: ['Alex Brush', 'cursive'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            background-image: radial-gradient(#E8DFD1 0.75px, transparent 0.75px), radial-gradient(#E8DFD1 0.75px, #FDFBF7 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            color: #4A3B32;
+        }
+
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #B8860B 0%, #D4AF37 35%, #F3E5AB 50%, #D4AF37 65%, #9A7B1C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 2px 4px rgba(212, 175, 55, 0.15);
+        }
+
+        .gold-bg-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #E5C158 50%, #B8860B 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(74, 59, 50, 0.08), 0 0 15px rgba(212, 175, 55, 0.05);
+        }
+
+        .floral-corner {
+            pointer-events: none;
+            opacity: 0.85;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-wedding-bronze selection:bg-wedding-gold-light selection:text-wedding-bronze">
+
+    <!-- Audio Player Integrado -->
+    <audio id="wedding-music" loop preload="auto">
+        <source src="musica_boda.mp3" type="audio/mpeg">
+        Tu navegador no soporta el reproductor de audio.
+    </audio>
+
+    <!-- Botón Flotante para Música -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="music-toggle" onclick="toggleMusic()" class="gold-bg-gradient text-white w-12 h-12 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-300 border-2 border-white/80" title="Reproducir / Pausar Música">
+            <i id="music-icon" class="fa-solid fa-music text-lg"></i>
+        </button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-wedding-cream/90 backdrop-blur-md border-b border-wedding-gold/20 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#hero" class="font-script text-3xl md:text-4xl gold-text-gradient font-bold tracking-wide">Anna & Kevin</a>
+            <div class="hidden md:flex space-x-6 font-serif text-sm tracking-widest uppercase">
+                <a href="#detalles" class="hover:text-wedding-gold transition-colors">Fecha y Lugar</a>
+                <a href="#historia" class="hover:text-wedding-gold transition-colors">Fotos</a>
+                <a href="#rsvp" class="hover:text-wedding-gold transition-colors">Confirmación</a>
+                <a href="#regalos" class="hover:text-wedding-gold transition-colors">Regalos</a>
+                <a href="#faq" class="hover:text-wedding-gold transition-colors">Info Importante</a>
+            </div>
+            <a href="#rsvp" class="gold-bg-gradient text-white text-xs md:text-sm uppercase tracking-wider px-4 py-2 rounded-full shadow-md hover:brightness-105 transition-all flex items-center font-medium">
+                <i class="fa-brands fa-whatsapp mr-1.5 text-base"></i> RSVP
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 pb-12 px-4 overflow-hidden">
+        
+        <!-- Elementos decorativos florales -->
+        <div class="absolute top-0 left-0 w-48 md:w-80 floral-corner -translate-x-6 -translate-y-6">
+            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="80" fill="#F3E5AB" fill-opacity="0.2"/>
+                <path d="M10 80 Q 50 10 120 40 T 180 120" stroke="#D4AF37" stroke-width="1.5" fill="none" opacity="0.6"/>
+                <path d="M30 40 C 20 10, 60 10, 50 40 C 70 20, 80 60, 50 50 C 40 80, 10 60, 30 40 Z" fill="#FFF9EF" stroke="#D4AF37" stroke-width="1"/>
+            </svg>
+        </div>
+        <div class="absolute top-0 right-0 w-48 md:w-80 floral-corner translate-x-6 -translate-y-6 transform scale-x-[-1]">
+            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="80" fill="#F3E5AB" fill-opacity="0.2"/>
+                <path d="M10 80 Q 50 10 120 40 T 180 120" stroke="#D4AF37" stroke-width="1.5" fill="none" opacity="0.6"/>
+            </svg>
+        </div>
+
+        <div class="max-w-3xl mx-auto text-center z-10 animate-fade-in my-auto">
+            
+            <div class="mb-4 inline-block relative">
+                <svg class="w-20 h-20 md:w-24 md:h-24 mx-auto text-wedding-gold drop-shadow-md" viewBox="0 0 100 100" fill="none">
+                    <circle cx="40" cy="50" r="25" stroke="url(#goldGradient)" stroke-width="6" fill="none"/>
+                    <circle cx="60" cy="50" r="25" stroke="url(#goldGradient)" stroke-width="6" fill="none"/>
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#D4AF37"/>
+                            <stop offset="50%" stop-color="#F3E5AB"/>
+                            <stop offset="100%" stop-color="#9A7B1C"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <p class="font-serif uppercase tracking-[0.3em] text-wedding-bronze-light text-sm md:text-base mb-2">Nuestra Boda</p>
+            <h1 class="font-script text-7xl sm:text-8xl md:text-9xl gold-text-gradient mb-2 py-2 leading-none">Anna & Kevin</h1>
+            
+            <div class="flex items-center justify-center space-x-4 my-4 max-w-xs mx-auto">
+                <div class="h-[1px] bg-gradient-to-r from-transparent via-wedding-gold to-transparent flex-1"></div>
+                <i class="fa-solid fa-heart text-wedding-gold text-xs"></i>
+                <div class="h-[1px] bg-gradient-to-r from-transparent via-wedding-gold to-transparent flex-1"></div>
+            </div>
+
+            <p class="font-serif italic text-lg md:text-xl text-wedding-bronze max-w-lg mx-auto mb-8 px-4">
+                "Este día tan especial estaremos junto a nuestros seres queridos. Estamos muy felices de compartirlo con ustedes."
+            </p>
+
+            <!-- Countdown Timer -->
+            <div class="bg-wedding-cream/80 border border-wedding-gold/30 rounded-2xl p-6 md:p-8 card-shadow backdrop-blur-sm max-w-xl mx-auto">
+                <p class="font-serif uppercase tracking-widest text-xs text-wedding-bronze-light mb-4">Faltan tan solo</p>
+                <div class="grid grid-cols-4 gap-2 md:gap-4 text-center">
+                    <div class="bg-white/90 border border-wedding-gold/20 rounded-xl p-2 md:p-4 shadow-sm">
+                        <span id="days" class="font-serif text-2xl md:text-4xl font-bold gold-text-gradient block">00</span>
+                        <span class="text-[10px] md:text-xs uppercase tracking-wider text-wedding-bronze-light">Días</span>
+                    </div>
+                    <div class="bg-white/90 border border-wedding-gold/20 rounded-xl p-2 md:p-4 shadow-sm">
+                        <span id="hours" class="font-serif text-2xl md:text-4xl font-bold gold-text-gradient block">00</span>
+                        <span class="text-[10px] md:text-xs uppercase tracking-wider text-wedding-bronze-light">Horas</span>
+                    </div>
+                    <div class="bg-white/90 border border-wedding-gold/20 rounded-xl p-2 md:p-4 shadow-sm">
+                        <span id="minutes" class="font-serif text-2xl md:text-4xl font-bold gold-text-gradient block">00</span>
+                        <span class="text-[10px] md:text-xs uppercase tracking-wider text-wedding-bronze-light">Minutos</span>
+                    </div>
+                    <div class="bg-white/90 border border-wedding-gold/20 rounded-xl p-2 md:p-4 shadow-sm">
+                        <span id="seconds" class="font-serif text-2xl md:text-4xl font-bold gold-text-gradient block">00</span>
+                        <span class="text-[10px] md:text-xs uppercase tracking-wider text-wedding-bronze-light">Segundos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section id="detalles" class="py-16 px-4 bg-wedding-warm-bg/60 relative border-y border-wedding-gold/10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-script text-5xl md:text-6xl gold-text-gradient mb-2">Cuándo & Dónde</h2>
+            <p class="font-serif uppercase tracking-widest text-xs text-wedding-bronze-light mb-12">Detalles del Evento</p>
+
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <!-- Date Card -->
+                <div class="bg-white border border-wedding-gold/30 rounded-2xl p-8 card-shadow flex flex-col justify-between hover:border-wedding-gold/60 transition-all">
+                    <div>
+                        <div class="w-14 h-14 rounded-full bg-wedding-gold-light/30 flex items-center justify-center mx-auto mb-4 text-wedding-gold">
+                            <i class="fa-regular fa-calendar-check text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-wedding-bronze font-semibold mb-2">Fecha y Hora</h3>
+                        <div class="my-4 border-y border-wedding-gold/20 py-3 flex items-center justify-center space-x-4">
+                            <span class="font-serif text-lg uppercase tracking-wider">Sábado</span>
+                            <span class="font-serif text-4xl font-bold gold-text-gradient">10</span>
+                            <span class="font-serif text-lg uppercase tracking-wider">Octubre</span>
+                        </div>
+                        <p class="font-sans text-sm text-wedding-bronze-light">Recepción e Inicio: <strong>19:00 HS</strong></p>
+                    </div>
+                    <div class="mt-6">
+                        <button onclick="addToCalendar()" class="inline-flex items-center text-xs font-serif uppercase tracking-widest text-wedding-gold-dark hover:text-wedding-gold transition-colors">
+                            <i class="fa-regular fa-calendar-plus mr-2"></i> Añadir a mi Calendario
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Location Card -->
+                <div class="bg-white border border-wedding-gold/30 rounded-2xl p-8 card-shadow flex flex-col justify-between hover:border-wedding-gold/60 transition-all">
+                    <div>
+                        <div class="w-14 h-14 rounded-full bg-wedding-gold-light/30 flex items-center justify-center mx-auto mb-4 text-wedding-gold">
+                            <i class="fa-solid fa-location-dot text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-wedding-bronze font-semibold mb-2">Ubicación</h3>
+                        <p class="font-sans text-base font-medium text-wedding-bronze mt-2">Lomas de la Florida</p>
+                        <p class="font-sans text-sm text-wedding-bronze-light mb-4">Mz 934, Sl 17</p>
+                        <p class="font-serif italic text-xs text-wedding-bronze-light">Haz clic abajo para abrir la ubicación exacta en el mapa.</p>
+                    </div>
+
+                    <div class="mt-6 flex justify-center">
+                        <a href="https://maps.app.goo.gl/zftanmRf2Du2Nj1L9" target="_blank" rel="noopener noreferrer" class="gold-bg-gradient text-white text-xs uppercase tracking-wider px-6 py-3 rounded-xl shadow-md hover:brightness-105 transition-all flex items-center justify-center font-medium">
+                            <i class="fa-map-location-dot mr-2 text-sm"></i> Cómo Llegar (Google Maps)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="historia" class="py-16 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="font-script text-5xl md:text-6xl gold-text-gradient mb-2">Nuestra Historia</h2>
+            <p class="font-serif uppercase tracking-widest text-xs text-wedding-bronze-light mb-10">Galería de Momentos & Boda Civil</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="relative group overflow-hidden rounded-xl shadow-md border border-wedding-gold/20 cursor-pointer h-60" onclick="openLightbox('foto1.jpeg')">
+                    <img src="foto1.jpeg" alt="Anna y Kevin 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-wedding-bronze/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+
+                <div class="relative group overflow-hidden rounded-xl shadow-md border border-wedding-gold/20 cursor-pointer h-60" onclick="openLightbox('foto2.jpeg')">
+                    <img src="foto2.jpeg" alt="Boda Civil 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-wedding-bronze/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+
+                <div class="relative group overflow-hidden rounded-xl shadow-md border border-wedding-gold/20 cursor-pointer h-60" onclick="openLightbox('foto3.jpeg')">
+                    <img src="foto3.jpeg" alt="Anillos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-wedding-bronze/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+
+                <div class="relative group overflow-hidden rounded-xl shadow-md border border-wedding-gold/20 cursor-pointer h-60" onclick="openLightbox('foto4.jpeg')">
+                    <img src="foto4.jpeg" alt="Celebración" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-wedding-bronze/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full">
+            <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-3xl hover:text-wedding-gold"><i class="fa-solid fa-xmark"></i></button>
+            <img id="lightbox-img" src="" alt="Imagen ampliada" class="max-h-[85vh] mx-auto rounded-lg shadow-2xl object-contain">
+        </div>
+    </div>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-16 px-4 bg-wedding-warm-bg/70 border-t border-wedding-gold/20">
+        <div class="max-w-2xl mx-auto">
+            <div class="bg-white border border-wedding-gold/30 rounded-3xl p-6 md:p-10 card-shadow">
+                <div class="text-center mb-8">
+                    <h2 class="font-script text-5xl md:text-6xl gold-text-gradient mb-2">Confirmar Asistencia</h2>
+                    <p class="font-serif uppercase tracking-widest text-xs text-wedding-bronze-light">Tu mensaje de confirmación llegará por WhatsApp</p>
+                </div>
+
+                <form id="rsvp-form" onsubmit="sendWhatsAppRSVP(event)" class="space-y-5">
+                    <div>
+                        <label class="block font-serif text-sm uppercase tracking-wider mb-2 text-wedding-bronze">Nombre y Apellido *</label>
+                        <input type="text" id="rsvp-name" required placeholder="Ej. María Delgado" class="w-full px-4 py-3 rounded-xl border border-wedding-gold/30 focus:border-wedding-gold focus:ring-1 focus:ring-wedding-gold outline-none text-sm transition-all bg-wedding-cream/50">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-serif text-sm uppercase tracking-wider mb-2 text-wedding-bronze">¿Asistirás? *</label>
+                            <select id="rsvp-status" required class="w-full px-4 py-3 rounded-xl border border-wedding-gold/30 focus:border-wedding-gold focus:ring-1 focus:ring-wedding-gold outline-none text-sm transition-all bg-wedding-cream/50">
+                                <option value="¡Sí, asistiré con mucho gusto!">¡Sí, asistiré con mucho gusto!</option>
+                                <option value="Lamentablemente no podré asistir">Lamentablemente no podré asistir</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-serif text-sm uppercase tracking-wider mb-2 text-wedding-bronze">Pases / Acompañantes</label>
+                            <select id="rsvp-passes" class="w-full px-4 py-3 rounded-xl border border-wedding-gold/30 focus:border-wedding-gold focus:ring-1 focus:ring-wedding-gold outline-none text-sm transition-all bg-wedding-cream/50">
+                                <option value="1 persona (Solo yo)">1 persona (Solo yo)</option>
+                                <option value="2 personas">2 personas</option>
+                                <option value="3 personas">3 personas</option>
+                                <option value="4 personas">4 personas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-serif text-sm uppercase tracking-wider mb-2 text-wedding-bronze">Preferencia de Menú / Alergias</label>
+                        <input type="text" id="rsvp-menu" placeholder="Ej. Menú vegetariano, celíaco, etc. (Opcional)" class="w-full px-4 py-3 rounded-xl border border-wedding-gold/30 focus:border-wedding-gold focus:ring-1 focus:ring-wedding-gold outline-none text-sm transition-all bg-wedding-cream/50">
+                    </div>
+
+                    <div>
+                        <label class="block font-serif text-sm uppercase tracking-wider mb-2 text-wedding-bronze">Sugerencia de Canción para el DJ 🎵</label>
+                        <input type="text" id="rsvp-song" placeholder="Ej. Vivir mi Vida - Marc Anthony (Opcional)" class="w-full px-4 py-3 rounded-xl border border-wedding-gold/30 focus:border-wedding-gold focus:ring-1 focus:ring-wedding-gold outline-none text-sm transition-all bg-wedding-cream/50">
+                    </div>
+
+                    <div>
+                        <label class="block font-serif text-sm uppercase tracking-wider mb-2 text-wedding-bronze">Mensaje para los Novios</label>
+                        <textarea id="rsvp-message" rows="3" placeholder="Déjanos un mensaje cariñoso... (Opcional)" class="w-full px-4 py-3 rounded-xl border border-wedding-gold/30 focus:border-wedding-gold focus:ring-1 focus:ring-wedding-gold outline-none text-sm transition-all bg-wedding-cream/50 resize-none"></textarea>
+                    </div>
+
+                    <!-- Botón RSVP con el gradiente dorado elegante acorde a la web -->
+                    <button type="submit" class="w-full gold-bg-gradient text-white font-serif uppercase tracking-widest text-sm py-3.5 rounded-xl shadow-lg hover:brightness-105 transition-all mt-4 flex items-center justify-center font-semibold">
+                        <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Confirmar mi Asistencia
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Section -->
+    <section id="regalos" class="py-16 px-4">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="w-16 h-16 rounded-full bg-wedding-gold-light/30 flex items-center justify-center mx-auto mb-4 text-wedding-gold">
+                <i class="fa-solid fa-heart text-2xl"></i>
+            </div>
+            <h2 class="font-script text-5xl md:text-6xl gold-text-gradient mb-2">Muestras de Cariño</h2>
+            <p class="font-serif uppercase tracking-widest text-xs text-wedding-bronze-light mb-8">Lo más importante para nosotros</p>
+            
+            <div class="bg-white border border-wedding-gold/30 rounded-3xl p-8 md:p-12 card-shadow max-w-2xl mx-auto relative overflow-hidden">
+                <i class="fa-solid fa-quote-left text-wedding-gold/30 text-4xl mb-4 block"></i>
+                
+                <p class="font-serif text-xl md:text-2xl text-wedding-bronze leading-relaxed mb-6 font-medium">
+                    "El mejor regalo que podemos recibir es tu presencia en este día tan especial."
+                </p>
+
+                <p class="font-sans text-sm md:text-base text-wedding-bronze-light leading-relaxed mb-6">
+                    Para nosotros, contar con tu compañía, tus sonrisas y tus buenos deseos es lo más valioso e importante. No es necesario que traigas ningún obsequio; lo único que realmente deseamos es celebrar juntos este momento inolvidable.
+                </p>
+
+                <div class="inline-block bg-wedding-warm-bg border border-wedding-gold/20 px-6 py-3 rounded-full">
+                    <p class="font-serif italic text-xs md:text-sm text-wedding-gold-dark font-semibold">
+                        ✨ Si deseas hacernos un detalle, este será completamente libre y voluntario. ✨
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / Important Info Section -->
+    <section id="faq" class="py-16 px-4 bg-wedding-warm-bg/60 border-t border-wedding-gold/15">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="w-14 h-14 rounded-full bg-wedding-gold-light/30 flex items-center justify-center mx-auto mb-4 text-wedding-gold">
+                <i class="fa-solid fa-circle-info text-2xl"></i>
+            </div>
+            <h2 class="font-script text-5xl md:text-6xl gold-text-gradient mb-2">Información Importante</h2>
+            <p class="font-serif uppercase tracking-widest text-xs text-wedding-bronze-light mb-10">Preguntas Frecuentes</p>
+            
+            <div class="grid md:grid-cols-3 gap-6 text-left">
+                <div class="bg-white border border-wedding-gold/20 rounded-2xl p-6 card-shadow">
+                    <div class="text-wedding-gold mb-3 text-xl"><i class="fa-solid fa-clock"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wedding-bronze mb-2">Puntualidad</h3>
+                    <p class="font-sans text-xs text-wedding-bronze-light leading-relaxed">
+                        Agradecemos llegar unos 15 minutos antes de las 19:30 hs para dar inicio a la ceremonia con total calma.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-wedding-gold/20 rounded-2xl p-6 card-shadow">
+                    <div class="text-wedding-gold mb-3 text-xl"><i class="fa-solid fa-images"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wedding-bronze mb-2">Recuerdos</h3>
+                    <p class="font-sans text-xs text-wedding-bronze-light leading-relaxed">
+                        En esta misma página encontrarás las fotos de la boda antes, durante y después del evento.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-wedding-gold/20 rounded-2xl p-6 card-shadow">
+                    <div class="text-wedding-gold mb-3 text-xl"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <h3 class="font-serif text-lg font-semibold text-wedding-bronze mb-2">Confirmación</h3>
+                    <p class="font-sans text-xs text-wedding-bronze-light leading-relaxed">
+                        Por favor confirma tu asistencia a través del formulario de esta página para ajustar todos los detalles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-wedding-warm-bg border-t border-wedding-gold/20 text-center relative overflow-hidden">
+        <div class="max-w-xl mx-auto z-10 relative">
+            <h3 class="font-script text-6xl gold-text-gradient mb-2">Anna & Kevin</h3>
+            <p class="font-serif text-xl italic text-wedding-bronze mb-6">¡Te esperamos para celebrar juntos!</p>
+            <p class="font-sans text-xs text-wedding-bronze-light">10 de Octubre • Lomas de la Florida</p>
+        </div>
+    </footer>
+
+    <script>
+        // Número de WhatsApp para recibir las respuestas (código de país + número)
+        const whatsappNumber = "593990000000"; 
+
+        // Fecha de la boda: Octubre 10, 2026 19:00:00
+        const eventDate = new Date('October 10, 2026 19:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Control de Música
+        function toggleMusic() {
+            const audio = document.getElementById('wedding-music');
+            const icon = document.getElementById('music-icon');
+            if (audio.paused) {
+                audio.play();
+                icon.className = "fa-solid fa-pause text-lg";
+            } else {
+                audio.pause();
+                icon.className = "fa-solid fa-music text-lg";
+            }
+        }
+
+        document.addEventListener('click', function startMusicOnFirstClick() {
+            const audio = document.getElementById('wedding-music');
+            const icon = document.getElementById('music-icon');
+
+            if (audio.paused) {
+                audio.play()
+                    .then(() => { icon.className = "fa-solid fa-pause text-lg"; })
+                    .catch(() => {});
+            }
+        }, { once: true });
+
+        // Abrir/Cerrar Lightbox
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+
+        // Envío de RSVP vía WhatsApp
+        function sendWhatsAppRSVP(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('rsvp-name').value.trim();
+            const status = document.getElementById('rsvp-status').value;
+            const passes = document.getElementById('rsvp-passes').value;
+            const menu = document.getElementById('rsvp-menu').value.trim() || 'Sin observaciones';
+            const song = document.getElementById('rsvp-song').value.trim() || 'Sin sugerencia';
+            const message = document.getElementById('rsvp-message').value.trim() || '¡Muchas felicidades!';
+
+            let text = `¡Hola Anna & Kevin! 💍✨\n\n`;
+            text += `Quiero confirmar mi respuesta para su Boda:\n\n`;
+            text += `👤 *Nombre:* ${name}\n`;
+            text += `💌 *Asistencia:* ${status}\n`;
+            text += `👥 *Pases/Acompañantes:* ${passes}\n`;
+            text += `🍽️ *Menú/Alergias:* ${menu}\n`;
+            text += `🎵 *Canción sugerida:* ${song}\n`;
+            text += `💬 *Mensaje:* ${message}\n\n`;
+            text += `¡Un abrazo con mucho cariño! ❤️`;
+
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Añadir a Google Calendar
+        function addToCalendar() {
+            const title = "Boda Anna & Kevin";
+            const details = "Celebración de Boda Anna & Kevin";
+            const location = "Lomas de la florida mz934, sl17";
+            const startDate = "20261010T190000Z";
+            const endDate = "20261011T030000Z";
+            
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+            window.open(calendarUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
